@@ -29,6 +29,22 @@ app.post("/register", (req, res) => {
     });
 });
 
+app.post("/login", (req, res) => {
+    const user = req.body.user;
+    const pass = req.body.pass;
+    const SQLStatement = "SELECT * FROM admins WHERE user = ? AND pass = ?";
+    db.query(SQLStatement, [user, pass], (err, result) => {
+        if (err) {
+            res.send({ err: err });
+        }
+        if (result.length > 0) {
+            res.send(result);
+        } else {
+            res.send({ message: "Wrong username/password combination!" });
+        }
+    });
+});
+
 app.listen(3001, () => {
     console.log("server running on port 3001");
 });

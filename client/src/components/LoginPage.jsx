@@ -25,10 +25,10 @@ function LoginPage() {
         console.log(user, "USER REF");
         console.log(pass, "PASS REF");
         try {
-            Axios.post("http://localhost:3001/register", { user: user, pass: pass }).then((res) => {
-                console.log(res, "register account function");
+            Axios.post("http://localhost:3001/login", { user: user, pass: pass }).then((res) => {
+                console.log(res, "login account function");
             });
-            alert("register success");
+            alert("login success");
         } catch (err) {
             console.log(err);
         }
