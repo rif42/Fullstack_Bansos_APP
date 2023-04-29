@@ -1,9 +1,12 @@
 import LogoBogor from "../assets/logobogor.svg";
 import { useState } from "react";
 import Axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { AiOutlineClose } from "react-icons/ai";
 import "./LoginPage.css";
 
 function LoginPage() {
+    const navigate = useNavigate();
     const [user, setUser] = useState("");
     const [pass, setPass] = useState("");
     const [loginmodal, setLoginModal] = useState(false);
@@ -25,14 +28,18 @@ function LoginPage() {
         console.log(user, "USER REF");
         console.log(pass, "PASS REF");
         try {
-            Axios.post("http://localhost:3001/login", { user: user, pass: pass }).then((res) => {
-                console.log(res, "login account function");
+            Axios.post("http://localhost:3001/login", { user: user, pass: pass }).then(() => {
+                navigate("/admin");
             });
-            alert("login success");
+            console.log("login success");
         } catch (err) {
             console.log(err);
         }
     };
+
+    function handleSubmit(e) {
+        e.preventDefault();
+    }
 
     const title = {
         display: "flex",
@@ -174,9 +181,15 @@ function LoginPage() {
         cursor: "pointer",
     };
 
-    function handleSubmit(e) {
-        e.preventDefault();
-    }
+    const closebutton = {
+        position: "absolute",
+        zIndex: 50,
+        marginBottom: "30%",
+        marginLeft: "25%",
+        width: "4%",
+        height: "4%",
+        cursor: "pointer",
+    };
 
     return (
         <>
@@ -195,6 +208,7 @@ function LoginPage() {
 
             {loginmodal ? (
                 <div style={modal}>
+                    <AiOutlineClose style={closebutton} onClick={() => setLoginModal(false)} />
                     <form id='loginform' style={modalbox} onSubmit={handleSubmit}>
                         <label htmlFor='user' style={loginlabel}>
                             Username

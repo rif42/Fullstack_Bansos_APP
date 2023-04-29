@@ -1,0 +1,111 @@
+.admin_wrapper{
+    display: flex;
+    flex-direction: row;
+}
+
+.sidebar {
+    width: 20%;
+    height: 100vh;
+    margin-top: 0;
+    padding: 0;
+    background-color: #A0C334;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.upper_admin {
+    width: 100%;
+    height: 20%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.admin_pic{
+    object-fit: contain;
+    width: 20%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    fill: white;   
+}
+
+.admin_name{
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: white;
+}
+
+.sidebar_content {
+    width: 100%;
+    height: 60%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 10%;
+}
+.sidebar_items {
+    width: 60%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    color: white;
+}
+.sidebar_icons {
+    object-fit: contain;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center; 
+}
+.sidebar_items_text {
+    font-size: 1.1rem;
+}
+
+.lower_logout {
+    width: 100%;
+    height: 20%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+.logout_items {
+    width: 60%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    color: white;
+}
+
+.hr{
+    height: 2px;
+    width: 80%;
+    display: flex;
+    margin-bottom: 5%;
+    background-color: black;
+    border-color: black;
+    outline-color: black;
+
+}
+
+.admin_content{
+    width: 80%;
+    background-color: #E1E1E1; 
+    background-image: url('../assets/borgor.png');
+    background-repeat: no-repeat;
+    background-size: 40%;
+    background-position-x: 115%;
+    background-position-y: 200%;
+}
