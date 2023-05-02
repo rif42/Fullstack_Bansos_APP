@@ -2,15 +2,70 @@ import "./AdminDashboard.css";
 import { AiOutlineImport, AiOutlineUser, AiOutlineDashboard, AiOutlineTeam } from "react-icons/ai";
 import ScrollToTop from "./ScrollToTop";
 import BuatBansos from "./BuatBansos";
-import { useState, useEffect } from "react";
-import Axios from "axios";
-
-// useEffect(() => {
-//     axios;
-// });
+import CardBansos from "./CardBansos";
+import { useState } from "react";
 
 function AdminDashboard() {
-    const [bansosdata, setBansosdata] = useState(null);
+    const exampledata = [
+        {
+            idbansos: 123123123,
+            namabansos: "bansos example",
+            tglbansos1: "2023-05-02",
+            tglbansos2: "2023-05-25",
+            sesibansos: 2,
+        },
+        {
+            idbansos: 888888888,
+            namabansos: "bansos example2",
+            tglbansos1: "2023-05-03",
+            tglbansos2: "2023-05-26",
+            sesibansos: 3,
+        },
+        {
+            idbansos: 888888888,
+            namabansos: "bansos example2",
+            tglbansos1: "2023-05-03",
+            tglbansos2: "2023-05-26",
+            sesibansos: 3,
+        },
+        {
+            idbansos: 888888888,
+            namabansos: "bansos example2",
+            tglbansos1: "2023-05-03",
+            tglbansos2: "2023-05-26",
+            sesibansos: 3,
+        },
+        {
+            idbansos: 888888888,
+            namabansos: "bansos example2",
+            tglbansos1: "2023-05-03",
+            tglbansos2: "2023-05-26",
+            sesibansos: 3,
+        },
+        {
+            idbansos: 888888888,
+            namabansos: "bansos example2",
+            tglbansos1: "2023-05-03",
+            tglbansos2: "2023-05-26",
+            sesibansos: 3,
+        },
+        {
+            idbansos: 888888888,
+            namabansos: "bansos example2",
+            tglbansos1: "2023-05-03",
+            tglbansos2: "2023-05-26",
+            sesibansos: 3,
+        },
+        {
+            idbansos: 888888888,
+            namabansos: "bansos example2",
+            tglbansos1: "2023-05-03",
+            tglbansos2: "2023-05-26",
+            sesibansos: 3,
+        },
+    ];
+
+    const [bansosdata, setBansosdata] = useState(exampledata);
     const [bansosform, setBansosform] = useState(0);
 
     return (
@@ -48,7 +103,7 @@ function AdminDashboard() {
                     {bansosform ? (
                         <BuatBansos />
                     ) : bansosdata ? (
-                        <h1>CARD LAYOUT</h1>
+                        <CardBansos data={bansosdata} />
                     ) : (
                         <div className='buatbansos'>
                             <div
@@ -60,20 +115,6 @@ function AdminDashboard() {
                             </div>
                         </div>
                     )}
-
-                    {/* {bansosform ? (
-                        <BuatBansos />
-                    ) : (
-                        <div className='buatbansos'>
-                            <div
-                                onClick={() => {
-                                    setBansosform(!bansosform);
-                                }}
-                                className='tombol'>
-                                Buat Bansos
-                            </div>
-                        </div>
-                    )} */}
                 </div>
             </div>
         </>

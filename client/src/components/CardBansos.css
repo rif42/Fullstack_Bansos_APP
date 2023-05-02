@@ -1,0 +1,21 @@
+.bgcard{
+    width: max-content;
+    height: 60%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    overflow-x: scroll;
+}
+
+.card{
+    background-color: #A0C334;
+    height: 80%;
+    min-width: 20%;
+    margin: 1%;
+    padding: 2%;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+

@@ -22,8 +22,8 @@ function LoginPage() {
         console.log(pass, "PASS REF");
         try {
             Axios.post("http://localhost:3001/register", { user: user, pass: pass }).then((res) => {
-                if (res.data.err.sqlMessage) {
-                    errNotify(res.data.err.sqlMessage);
+                if (res.data.message) {
+                    errNotify(res.data.message);
                 } else {
                     regNotify();
                 }
@@ -38,8 +38,11 @@ function LoginPage() {
         console.log(pass, "PASS REF");
         try {
             Axios.post("http://localhost:3001/login", { user: user, pass: pass }).then((res) => {
-                if (res.data.err.sqlMessage) {
-                    errNotify(res.data.err.sqlMessage);
+                // console.log(res, "LOGIN RESPONSE");
+                // loginNotify();
+                // navigate("/admin");
+                if (res.data.message) {
+                    errNotify(res.data.message);
                 } else {
                     loginNotify();
                     navigate("/admin");
