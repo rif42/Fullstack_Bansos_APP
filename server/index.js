@@ -45,6 +45,19 @@ app.post("/login", (req, res) => {
     });
 });
 
+app.post("/buatbansos", (req, res) => {
+    const bansos_id = req.body.bansos_id;
+    const nama_bansos = req.body.nama_bansos;
+    const tgl1 = req.body.tgl1;
+    const tgl2 = req.body.tgl2;
+    const sesi = req.body.sesi;
+    const SQLStatement = "INSERT INTO bansos (bansos_id, nama_bansos, tgl1, tgl2, sesi) VALUES (?,?,?,?,?)";
+    db.query(SQLStatement, [bansos_id, nama_bansos, tgl1, tgl2, sesi], (err, result) => {
+        console.log(result);
+        console.log(err);
+    });
+});
+
 app.listen(3001, () => {
     console.log("server running on port 3001");
 });

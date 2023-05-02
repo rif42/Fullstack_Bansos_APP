@@ -2,8 +2,17 @@ import "./AdminDashboard.css";
 import { AiOutlineImport, AiOutlineUser, AiOutlineDashboard, AiOutlineTeam } from "react-icons/ai";
 import ScrollToTop from "./ScrollToTop";
 import BuatBansos from "./BuatBansos";
+import { useState, useEffect } from "react";
+import Axios from "axios";
+
+// useEffect(() => {
+//     axios;
+// });
 
 function AdminDashboard() {
+    const [bansosdata, setBansosdata] = useState(null);
+    const [bansosform, setBansosform] = useState(0);
+
     return (
         <>
             <ScrollToTop />
@@ -36,7 +45,35 @@ function AdminDashboard() {
                 </div>
 
                 <div className='admin_content'>
-                    <BuatBansos />
+                    {bansosform ? (
+                        <BuatBansos />
+                    ) : bansosdata ? (
+                        <h1>CARD LAYOUT</h1>
+                    ) : (
+                        <div className='buatbansos'>
+                            <div
+                                onClick={() => {
+                                    setBansosform(!bansosform);
+                                }}
+                                className='tombol'>
+                                Buat Bansos
+                            </div>
+                        </div>
+                    )}
+
+                    {/* {bansosform ? (
+                        <BuatBansos />
+                    ) : (
+                        <div className='buatbansos'>
+                            <div
+                                onClick={() => {
+                                    setBansosform(!bansosform);
+                                }}
+                                className='tombol'>
+                                Buat Bansos
+                            </div>
+                        </div>
+                    )} */}
                 </div>
             </div>
         </>

@@ -4,8 +4,13 @@ import Axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { AiOutlineClose } from "react-icons/ai";
 import "./LoginPage.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function LoginPage() {
+    const regNotify = () => toast("Register Success!");
+    const loginNotify = () => toast("Login Success!");
+
     const navigate = useNavigate();
     const [user, setUser] = useState("");
     const [pass, setPass] = useState("");
@@ -18,7 +23,7 @@ function LoginPage() {
             Axios.post("http://localhost:3001/register", { user: user, pass: pass }).then((res) => {
                 console.log(res, "register account function");
             });
-            alert("register success");
+            regNotify();
         } catch (err) {
             console.log(err);
         }
@@ -31,7 +36,7 @@ function LoginPage() {
             Axios.post("http://localhost:3001/login", { user: user, pass: pass }).then(() => {
                 navigate("/admin");
             });
-            console.log("login success");
+            loginNotify();
         } catch (err) {
             console.log(err);
         }
@@ -205,7 +210,7 @@ function LoginPage() {
                     </li>
                 </ul>
             </nav>
-
+            <ToastContainer />
             {loginmodal ? (
                 <div style={modal}>
                     <AiOutlineClose style={closebutton} onClick={() => setLoginModal(false)} />
