@@ -54,7 +54,9 @@ app.post("/buatbansos", (req, res) => {
     const SQLStatement = "INSERT INTO bansos (bansos_id, nama_bansos, tgl1, tgl2, sesi) VALUES (?,?,?,?,?)";
     db.query(SQLStatement, [bansos_id, nama_bansos, tgl1, tgl2, sesi], (err, result) => {
         console.log(result);
-        console.log(err);
+        if (err) {
+            res.send({ err: err });
+        }
     });
 });
 

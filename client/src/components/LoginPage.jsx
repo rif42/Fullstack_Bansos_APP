@@ -10,6 +10,7 @@ import "react-toastify/dist/ReactToastify.css";
 function LoginPage() {
     const regNotify = () => toast("Register Success!");
     const loginNotify = () => toast("Login Success!");
+    const errNotify = (msg) => toast.error(msg);
 
     const navigate = useNavigate();
     const [user, setUser] = useState("");
@@ -21,9 +22,12 @@ function LoginPage() {
         console.log(pass, "PASS REF");
         try {
             Axios.post("http://localhost:3001/register", { user: user, pass: pass }).then((res) => {
-                console.log(res, "register account function");
+                if (res.data.err.sqlMessage) {
+                    errNotify(res.data.err.sqlMessage);
+                } else {
+                    regNotify();
+                }
             });
-            regNotify();
         } catch (err) {
             console.log(err);
         }
@@ -33,10 +37,14 @@ function LoginPage() {
         console.log(user, "USER REF");
         console.log(pass, "PASS REF");
         try {
-            Axios.post("http://localhost:3001/login", { user: user, pass: pass }).then(() => {
-                navigate("/admin");
+            Axios.post("http://localhost:3001/login", { user: user, pass: pass }).then((res) => {
+                if (res.data.err.sqlMessage) {
+                    errNotify(res.data.err.sqlMessage);
+                } else {
+                    loginNotify();
+                    navigate("/admin");
+                }
             });
-            loginNotify();
         } catch (err) {
             console.log(err);
         }

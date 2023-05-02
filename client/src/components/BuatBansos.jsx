@@ -6,6 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 function BuatBansos() {
     const bansosNotify = () => toast("Bansos Telah Dibuat!");
+    const errNotify = (msg) => toast.error(msg);
 
     const [formdata, setFormData] = useState({});
 
@@ -36,9 +37,12 @@ function BuatBansos() {
                 tgl2: formdata.tglbansos2,
                 sesi: formdata.sesibansos,
             }).then((res) => {
-                console.log(res, "buat bansos function");
+                if (res.data.err.sqlMessage) {
+                    errNotify(res.data.err.sqlMessage);
+                } else {
+                    bansosNotify();
+                }
             });
-            bansosNotify();
         } catch (err) {
             console.log(err);
         }
