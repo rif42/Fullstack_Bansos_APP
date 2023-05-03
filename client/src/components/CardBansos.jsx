@@ -18,7 +18,7 @@ function CardBansos(props) {
             <div className='bgcard'>
                 {/* for every item in data */}
                 {props.data.map((item) => {
-                    return <Cards key={item.idbansos} {...item} />;
+                    return <Cards key={item.bansos_id} {...item} />;
                 })}
             </div>
         </>
@@ -30,14 +30,14 @@ function Cards(item) {
         <>
             <div className='card'>
                 <div className='cardtitle'>
-                    <h1>{item.namabansos}</h1>
+                    <h1>{item.nama_bansos}</h1>
                 </div>
                 <div className='cardbody'>
                     <p>
-                        <b>ID : {item.idbansos}</b>
+                        <b>ID : {item.bansos_id}</b>
                     </p>
                     <p>
-                        <b>{item.tglbansos1}</b> s.d <b>{item.tglbansos2}</b>
+                        <b>{item.tgl1.slice(0, 10)}</b> s.d <b>{item.tgl2.slice(0, 10)}</b>
                     </p>
                     <br></br>
                     <br></br>

@@ -8,79 +8,6 @@ import { ReactPropTypes } from "react";
 import Axios from "axios";
 
 function AdminDashboard() {
-    useEffect(() => {
-        // get bansos data from database
-        Axios.post("http://localhost:3001/getbansos").then((err, res) => {
-            if (err) {
-                console.log(err);
-            }
-            if (res) {
-                console.log(res);
-                setBansosdata(res.data);
-            }
-        });
-        console.log("BANSOSDATA", bansosdata);
-    });
-    // const exampledata = null;
-    // const exampledata = [
-    //     {
-    //         idbansos: 123123123,
-    //         namabansos: "bansos example",
-    //         tglbansos1: "2023-05-02",
-    //         tglbansos2: "2023-05-25",
-    //         sesibansos: 2,
-    //     },
-    //     {
-    //         idbansos: 888888888,
-    //         namabansos: "bansos example2",
-    //         tglbansos1: "2023-05-03",
-    //         tglbansos2: "2023-05-26",
-    //         sesibansos: 3,
-    //     },
-    //     {
-    //         idbansos: 888888888,
-    //         namabansos: "bansos example2",
-    //         tglbansos1: "2023-05-03",
-    //         tglbansos2: "2023-05-26",
-    //         sesibansos: 3,
-    //     },
-    //     {
-    //         idbansos: 888888888,
-    //         namabansos: "bansos example2",
-    //         tglbansos1: "2023-05-03",
-    //         tglbansos2: "2023-05-26",
-    //         sesibansos: 3,
-    //     },
-    //     {
-    //         idbansos: 888888888,
-    //         namabansos: "bansos example2",
-    //         tglbansos1: "2023-05-03",
-    //         tglbansos2: "2023-05-26",
-    //         sesibansos: 3,
-    //     },
-    //     {
-    //         idbansos: 888888888,
-    //         namabansos: "bansos example2",
-    //         tglbansos1: "2023-05-03",
-    //         tglbansos2: "2023-05-26",
-    //         sesibansos: 3,
-    //     },
-    //     {
-    //         idbansos: 888888888,
-    //         namabansos: "bansos example2",
-    //         tglbansos1: "2023-05-03",
-    //         tglbansos2: "2023-05-26",
-    //         sesibansos: 3,
-    //     },
-    //     {
-    //         idbansos: 888888888,
-    //         namabansos: "bansos example2",
-    //         tglbansos1: "2023-05-03",
-    //         tglbansos2: "2023-05-26",
-    //         sesibansos: 3,
-    //     },
-    // ];
-
     const [bansosdata, setBansosdata] = useState(null);
     const [bansosform, setBansosform] = useState(0);
 
@@ -88,6 +15,81 @@ function AdminDashboard() {
         setBansosform(!bansosform);
         console.log(bansosform, "form toggled");
     }
+
+    useEffect(() => {
+        // get bansos data from database
+        Axios.post("http://localhost:3001/getbansos").then((res, err) => {
+            if (err) {
+                console.log(err, "ERROR");
+            }
+            if (res) {
+                if (bansosdata != res.data) {
+                    setBansosdata(res.data);
+                }
+            }
+        });
+    });
+    // const exampledata = null;
+    const exampledata = [
+        {
+            idbansos: 123123123,
+            namabansos: "bansos example",
+            tglbansos1: "2023-05-02",
+            tglbansos2: "2023-05-25",
+            sesibansos: 2,
+        },
+        {
+            idbansos: 888888888,
+            namabansos: "bansos example2",
+            tglbansos1: "2023-05-03",
+            tglbansos2: "2023-05-26",
+            sesibansos: 3,
+        },
+        {
+            idbansos: 888888888,
+            namabansos: "bansos example2",
+            tglbansos1: "2023-05-03",
+            tglbansos2: "2023-05-26",
+            sesibansos: 3,
+        },
+        {
+            idbansos: 888888888,
+            namabansos: "bansos example2",
+            tglbansos1: "2023-05-03",
+            tglbansos2: "2023-05-26",
+            sesibansos: 3,
+        },
+        {
+            idbansos: 888888888,
+            namabansos: "bansos example2",
+            tglbansos1: "2023-05-03",
+            tglbansos2: "2023-05-26",
+            sesibansos: 3,
+        },
+        {
+            idbansos: 888888888,
+            namabansos: "bansos example2",
+            tglbansos1: "2023-05-03",
+            tglbansos2: "2023-05-26",
+            sesibansos: 3,
+        },
+        {
+            idbansos: 888888888,
+            namabansos: "bansos example2",
+            tglbansos1: "2023-05-03",
+            tglbansos2: "2023-05-26",
+            sesibansos: 3,
+        },
+        {
+            idbansos: 888888888,
+            namabansos: "bansos example2",
+            tglbansos1: "2023-05-03",
+            tglbansos2: "2023-05-26",
+            sesibansos: 3,
+        },
+    ];
+
+    // console.log(exampledata, "example data");
 
     return (
         <>

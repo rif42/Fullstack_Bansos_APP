@@ -1,20 +1,18 @@
-create table data_warga(
-    nkk INT(16) not null primary key,
-    nama CHAR(32),
-    alamat CHAR(64),
-    tgl_claim DATE,
-    sesi ENUM('1', '2', '3'),
-    no_antre TINYINT,
-    status BOOL
+create table bansos(
+    bansos_id BIGINT not null primary key,
+    nama_bansos CHAR(32),
+    tgl1 DATE,
+    tgl2 DATE,
+    sesi ENUM('1', '2', '3')
 );
 create table data_warga(
-    nkk INT(16) not null primary key,
+    nkk BIGINT not null primary key,
     nama CHAR(32),
     alamat CHAR(64),
     tgl_claim DATE,
     sesi ENUM('1', '2', '3'),
-    no_antre TINYINT,
+    no_antre SMALLINT,
     status BOOL,
-    bansos_id INT(12),
+    bansos_id BIGINT,
     FOREIGN KEY (bansos_id) REFERENCES bansos(bansos_id)
 );

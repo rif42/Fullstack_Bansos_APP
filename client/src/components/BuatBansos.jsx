@@ -28,9 +28,25 @@ function BuatBansos(props) {
         });
     };
 
+    const validate = () => {
+        if (formdata.idbansos.length < 12 || formdata.idbansos.length > 12) {
+            errNotify("ID Bansos harus 12 digit");
+            return false;
+        }
+
+        if (formdata.namabansos.length < 7 || formdata.namabansos.length > 32) {
+            errNotify("Nama Bansos harus 6-32 karakter");
+            return false;
+        }
+
+        return true;
+    };
+
     const submit = (e) => {
         e.preventDefault();
-        // console.log(formdata);
+        if (!validate()) return;
+
+        console.log(formdata);
         // console.log(formdata.idbansos, "ID BANSOS");
 
         try {
@@ -41,7 +57,7 @@ function BuatBansos(props) {
                 tgl2: formdata.tglbansos2,
                 sesi: formdata.sesibansos,
             }).then((res) => {
-                if (res.data.err.sqlMessage) {
+                if (res.data.err) {
                     errNotify(res.data.err.sqlMessage);
                 } else {
                     bansosNotify();
@@ -80,6 +96,7 @@ function BuatBansos(props) {
                             type='date'
                             id='tglbansos1'
                             name='tglbansos1'
+                            required
                         />
                         <p style={{ paddingRight: "3%", paddingLeft: "3%" }}>s.d</p>
                         <input
@@ -88,6 +105,7 @@ function BuatBansos(props) {
                             type='date'
                             id='tglbansos2'
                             name='tglbansos2'
+                            required
                         />
                     </div>
                     <div className='bansosform_formitems'>
@@ -100,6 +118,7 @@ function BuatBansos(props) {
                             type='text'
                             id='idbansos'
                             name='idbansos'
+                            required
                         />
                     </div>
 
@@ -116,6 +135,7 @@ function BuatBansos(props) {
                             type='radio'
                             id='1'
                             name='sesibansos'
+                            required
                         />
                         <label className='sesibansos_label' htmlFor='sesibansos2'>
                             Sesi 2
@@ -126,6 +146,7 @@ function BuatBansos(props) {
                             type='radio'
                             id='2'
                             name='sesibansos'
+                            required
                         />
                         <label className='sesibansos_label' htmlFor='sesibansos3'>
                             Sesi 3
@@ -137,6 +158,7 @@ function BuatBansos(props) {
                             type='radio'
                             id='3'
                             name='sesibansos'
+                            required
                         />
                     </div>
                     <div className='buatbansos_buttons'>

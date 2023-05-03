@@ -1,5 +1,5 @@
 .bgcard{
-    width: max-content;
+    width: 75vw;
     height: 60%;
     display: flex;
     justify-content: flex-start;
@@ -10,7 +10,7 @@
 .card{
     background-color: #A0C334;
     height: 80%;
-    min-width: 20%;
+    min-width: 18vw;
     margin: 1%;
     padding: 2%;
     border-radius: 30px;
