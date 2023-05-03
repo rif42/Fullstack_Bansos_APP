@@ -4,8 +4,10 @@ import ScrollToTop from "./ScrollToTop";
 import BuatBansos from "./BuatBansos";
 import CardBansos from "./CardBansos";
 import { useState } from "react";
+import { ReactPropTypes } from "react";
 
 function AdminDashboard() {
+    // const exampledata = null;
     const exampledata = [
         {
             idbansos: 123123123,
@@ -68,6 +70,11 @@ function AdminDashboard() {
     const [bansosdata, setBansosdata] = useState(exampledata);
     const [bansosform, setBansosform] = useState(0);
 
+    function formtoggle() {
+        setBansosform(!bansosform);
+        console.log(bansosform, "form toggled");
+    }
+
     return (
         <>
             <ScrollToTop />
@@ -101,9 +108,9 @@ function AdminDashboard() {
 
                 <div className='admin_content'>
                     {bansosform ? (
-                        <BuatBansos />
+                        <BuatBansos formtoggle={formtoggle} />
                     ) : bansosdata ? (
-                        <CardBansos data={bansosdata} />
+                        <CardBansos data={bansosdata} formtoggle={formtoggle} />
                     ) : (
                         <div className='buatbansos'>
                             <div

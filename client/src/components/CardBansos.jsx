@@ -1,17 +1,23 @@
 import { useEffect } from "react";
 import "./CardBansos.css";
 
-function CardBansos(data) {
+function CardBansos(props) {
     // const [bansosdata, setBansosdata] = useState(data);
-    useEffect(() => {
-        console.log(data, "CARDBANSOS INITIALIZED");
-    });
+    // useEffect(() => {
+    //     console.log(data, "CARDBANSOS INITIALIZED");
+    // });
+    const handleToggle = () => {
+        props.formtoggle();
+    };
 
     return (
         <>
+            <div onClick={handleToggle} className='tombolcard'>
+                Buat Bansos
+            </div>
             <div className='bgcard'>
                 {/* for every item in data */}
-                {data.data.map((item) => {
+                {props.data.map((item) => {
                     return <Cards key={item.idbansos} {...item} />;
                 })}
             </div>

@@ -3,8 +3,12 @@ import { useState } from "react";
 import Axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { prop } from "react";
 
-function BuatBansos() {
+function BuatBansos(props) {
+    const handleBatal = () => {
+        props.formtoggle();
+    };
     const bansosNotify = () => toast("Bansos Telah Dibuat!");
     const errNotify = (msg) => toast.error(msg);
 
@@ -139,7 +143,7 @@ function BuatBansos() {
                         <button type='submit' className='buatbansos_button1'>
                             Buat Bansos
                         </button>
-                        <button type='reset' className='buatbansos_button2'>
+                        <button onClick={handleBatal} type='reset' className='buatbansos_button2'>
                             Batal
                         </button>
                     </div>

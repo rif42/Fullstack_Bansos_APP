@@ -136,6 +136,7 @@
     border-radius: 30px;
     box-shadow: 5px 5px 10px 1px rgba(0,0,0,0.7);
     cursor: pointer;
+    text-align: center;
 }
 
 .bansosform{
