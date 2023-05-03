@@ -2,10 +2,6 @@ import { useEffect } from "react";
 import "./CardBansos.css";
 
 function CardBansos(props) {
-    // const [bansosdata, setBansosdata] = useState(data);
-    // useEffect(() => {
-    //     console.log(data, "CARDBANSOS INITIALIZED");
-    // });
     const handleToggle = () => {
         props.formtoggle();
     };

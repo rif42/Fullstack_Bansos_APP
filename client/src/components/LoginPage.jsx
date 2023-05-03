@@ -32,8 +32,8 @@ function LoginPage() {
     const registerAccount = () => {
         //run validate function, if return false then stop the function
         if (!validate()) return;
-        console.log(user, "USER REF");
-        console.log(pass, "PASS REF");
+        // console.log(user, "USER REF");
+        // console.log(pass, "PASS REF");
         try {
             Axios.post("http://localhost:3001/register", { user: user, pass: pass }).then((res) => {
                 if (res.data.message) {
@@ -49,15 +49,12 @@ function LoginPage() {
 
     const loginAccount = () => {
         if (!validate()) return;
-        console.log(user, "USER REF");
-        console.log(pass, "PASS REF");
+        // console.log(user, "USER REF");
+        // console.log(pass, "PASS REF");
         try {
             Axios.post("http://localhost:3001/login", { user: user, pass: pass }).then((res, err) => {
-                console.log(res, "LOGIN RESPONSE");
-                console.log(err, "LOGIN RESPONSE");
-
-                // loginNotify();
-                // navigate("/admin");
+                // console.log(res, "LOGIN RESPONSE");
+                // console.log(err, "LOGIN RESPONSE");
                 if (res.data.message) {
                     errNotify(res.data.message);
                 } else if (res.err) {

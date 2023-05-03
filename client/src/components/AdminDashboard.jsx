@@ -6,8 +6,11 @@ import CardBansos from "./CardBansos";
 import { useState, useEffect } from "react";
 import { ReactPropTypes } from "react";
 import Axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function AdminDashboard() {
+    const navigate = useNavigate();
+
     const [bansosdata, setBansosdata] = useState(null);
     const [bansosform, setBansosform] = useState(0);
 
@@ -29,67 +32,6 @@ function AdminDashboard() {
             }
         });
     });
-    // const exampledata = null;
-    const exampledata = [
-        {
-            idbansos: 123123123,
-            namabansos: "bansos example",
-            tglbansos1: "2023-05-02",
-            tglbansos2: "2023-05-25",
-            sesibansos: 2,
-        },
-        {
-            idbansos: 888888888,
-            namabansos: "bansos example2",
-            tglbansos1: "2023-05-03",
-            tglbansos2: "2023-05-26",
-            sesibansos: 3,
-        },
-        {
-            idbansos: 888888888,
-            namabansos: "bansos example2",
-            tglbansos1: "2023-05-03",
-            tglbansos2: "2023-05-26",
-            sesibansos: 3,
-        },
-        {
-            idbansos: 888888888,
-            namabansos: "bansos example2",
-            tglbansos1: "2023-05-03",
-            tglbansos2: "2023-05-26",
-            sesibansos: 3,
-        },
-        {
-            idbansos: 888888888,
-            namabansos: "bansos example2",
-            tglbansos1: "2023-05-03",
-            tglbansos2: "2023-05-26",
-            sesibansos: 3,
-        },
-        {
-            idbansos: 888888888,
-            namabansos: "bansos example2",
-            tglbansos1: "2023-05-03",
-            tglbansos2: "2023-05-26",
-            sesibansos: 3,
-        },
-        {
-            idbansos: 888888888,
-            namabansos: "bansos example2",
-            tglbansos1: "2023-05-03",
-            tglbansos2: "2023-05-26",
-            sesibansos: 3,
-        },
-        {
-            idbansos: 888888888,
-            namabansos: "bansos example2",
-            tglbansos1: "2023-05-03",
-            tglbansos2: "2023-05-26",
-            sesibansos: 3,
-        },
-    ];
-
-    // console.log(exampledata, "example data");
 
     return (
         <>
@@ -107,7 +49,13 @@ function AdminDashboard() {
                         </div>
                         <div className='sidebar_items'>
                             <AiOutlineTeam className='admin_pic' />
-                            <p className='sidebar_items_text'>Data Warga </p>
+                            <p
+                                onClick={() => {
+                                    navigate("/datawarga");
+                                }}
+                                className='sidebar_items_text'>
+                                Data Warga
+                            </p>
                         </div>
                     </div>
                     <div className='lower_logout'>

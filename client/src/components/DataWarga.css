@@ -1,0 +1,144 @@
+
+.datawarga_wrapper{
+    display: flex;
+    flex-direction: row;
+}
+.tambahwarga{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 15%;
+    height: 8%;
+    margin-top: 3%;
+    margin-left:82%;
+    background-color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #6486FF;
+    border-radius: 30px;
+    box-shadow: 5px 5px 10px 1px rgba(0,0,0,0.7);
+    cursor: pointer;
+    text-align: center;
+}
+
+.pilihbansos{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 15%;
+    height: 8%;
+    margin-top: 3%;
+    margin-left:23%;
+    background-color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: black;
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px 1px rgba(0,0,0,0.7);
+    cursor: pointer;
+    text-align: center;
+}
+
+.datawarga_content{
+    width: 80%;
+    background-image: url('../assets/borgor.png');
+    background-repeat: no-repeat;
+    background-size: 40%;
+    background-position-x: 115%;
+    background-position-y: 200%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.datawarga_table{
+    flex-direction: column;
+    width: 92%;
+    margin-top: 15%;
+    border-radius: 20px;
+    display: flex;
+}
+
+.theader{
+    display: flex;
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+    flex-direction: row;
+    padding-top: 3%;
+    padding-bottom: 3%;
+    background-color: #C1CE97;
+    color: black;
+    font-size: 1.2rem;
+    align-items: center;
+}
+
+.th1 {
+    display: flex;
+    width: 10%;
+    justify-content: center;
+}
+.th2 {
+    display: flex;
+    width: 30%;
+    justify-content: center;
+}
+.th3 {
+    display: flex;
+    width: 30%;
+    justify-content: center;
+}
+.th4 {
+    display: flex;
+    width: 30%;
+    justify-content: center;
+}
+
+.datawarga_table_content{
+    display: flex;
+    flex-direction: column;
+    width: 92%;
+    max-height: 80%;
+    overflow-y: overlay;
+    overflow-x: hidden;
+    align-items: center;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+
+.tdata{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    color: black;
+    font-size: 1.1rem;
+    align-items: center;
+    min-height: 12%;
+}
+
+.tdata:nth-child(odd) {
+    background-color: #FAFEEC;
+
+}
+
+.tdata:nth-child(even) {
+    background-color: #C1CE97;
+
+}
+
+.tdata:last-child {
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+
+::-webkit-scrollbar {
+    background-color: rgba(0,0,0,0.2);
+    width: 10px;
+    border-radius: 5px;
+   
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: rgb(255, 255, 255);
+    border-radius: 5px;
+  }
