@@ -30,8 +30,8 @@ function BuatBansos(props) {
 
     const submit = (e) => {
         e.preventDefault();
-        console.log(formdata);
-        console.log(formdata.idbansos, "ID BANSOS");
+        // console.log(formdata);
+        // console.log(formdata.idbansos, "ID BANSOS");
 
         try {
             Axios.post("http://localhost:3001/buatbansos", {

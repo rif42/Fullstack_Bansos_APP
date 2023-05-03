@@ -68,6 +68,18 @@ app.post("/buatbansos", (req, res) => {
     });
 });
 
+app.post("/getbansos", (req, res) => {
+    const SQLStatement = "SELECT * FROM bansos";
+    db.query(SQLStatement, (err, result) => {
+        if (err) {
+            res.send({ err: err });
+        }
+        if (result) {
+            res.send(result);
+        }
+    });
+});
+
 app.listen(3001, () => {
     console.log("server running on port 3001");
 });
