@@ -17,7 +17,21 @@ function LoginPage() {
     const [pass, setPass] = useState("");
     const [loginmodal, setLoginModal] = useState(false);
 
+    const validate = () => {
+        if (user === "" || pass === "") {
+            errNotify("Username or Password is Empty!");
+            return false;
+        }
+        if (user.length < 5 || pass.length < 5) {
+            errNotify("Username or Password must be at least 5 characters!");
+            return false;
+        }
+        return true;
+    };
+
     const registerAccount = () => {
+        //run validate function, if return false then stop the function
+        if (!validate()) return;
         console.log(user, "USER REF");
         console.log(pass, "PASS REF");
         try {
@@ -34,15 +48,20 @@ function LoginPage() {
     };
 
     const loginAccount = () => {
+        if (!validate()) return;
         console.log(user, "USER REF");
         console.log(pass, "PASS REF");
         try {
-            Axios.post("http://localhost:3001/login", { user: user, pass: pass }).then((res) => {
-                // console.log(res, "LOGIN RESPONSE");
+            Axios.post("http://localhost:3001/login", { user: user, pass: pass }).then((res, err) => {
+                console.log(res, "LOGIN RESPONSE");
+                console.log(err, "LOGIN RESPONSE");
+
                 // loginNotify();
                 // navigate("/admin");
                 if (res.data.message) {
                     errNotify(res.data.message);
+                } else if (res.err) {
+                    errNotify(res.err);
                 } else {
                     loginNotify();
                     navigate("/admin");

@@ -1,5 +1,4 @@
 import Express from "express";
-import bodyParser from "body-parser";
 import mysql from "mysql";
 import cors from "cors";
 
@@ -14,7 +13,6 @@ const db = mysql.createPool({
 
 app.use(Express.json());
 app.use(cors());
-// app.use(bodyParser.urlencoded({ extended: true }));
 
 app.post("/register", (req, res) => {
     console.log(req, "req");
@@ -24,8 +22,14 @@ app.post("/register", (req, res) => {
 
     const SQLStatement = "INSERT INTO admins (user, pass,id) VALUES (?,?,?)";
     db.query(SQLStatement, [user, pass, id], (err, result) => {
-        console.log(result);
-        console.log(err);
+        if (err) {
+            res.send({ err: err });
+        }
+        if (result) {
+            if (result.length > 0) {
+                res.send(result);
+            }
+        }
     });
 });
 
@@ -37,10 +41,12 @@ app.post("/login", (req, res) => {
         if (err) {
             res.send({ err: err });
         }
-        if (result.length > 0) {
-            res.send(result);
-        } else {
-            res.send({ message: "Wrong username/password combination!" });
+        if (result) {
+            if (result.length > 0) {
+                res.send(result);
+            } else {
+                res.send({ message: "Wrong username/password combination!" });
+            }
         }
     });
 });
@@ -53,9 +59,11 @@ app.post("/buatbansos", (req, res) => {
     const sesi = req.body.sesi;
     const SQLStatement = "INSERT INTO bansos (bansos_id, nama_bansos, tgl1, tgl2, sesi) VALUES (?,?,?,?,?)";
     db.query(SQLStatement, [bansos_id, nama_bansos, tgl1, tgl2, sesi], (err, result) => {
-        console.log(result);
         if (err) {
             res.send({ err: err });
+        }
+        if (result) {
+            res.send({ message: "Data added!" });
         }
     });
 });
