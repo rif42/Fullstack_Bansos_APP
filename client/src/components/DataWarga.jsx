@@ -1,9 +1,18 @@
 import "./DataWarga.css";
+import { useState, useEffect } from "react";
 import { AiOutlineImport, AiOutlineUser, AiOutlineDashboard, AiOutlineTeam, AiOutlineCaretDown } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
+import TambahWarga from "./TambahWarga";
 
 function DataWarga() {
     const navigate = useNavigate();
+
+    const [tambahwarga, setTambahwarga] = useState(false);
+
+    function formtoggle() {
+        setTambahwarga(!tambahwarga);
+        console.log(tambahwarga, "form toggled");
+    }
 
     const exampledata = [
         {
@@ -107,6 +116,8 @@ function DataWarga() {
     return (
         <>
             <div className='datawarga_wrapper'>
+                {tambahwarga ? <TambahWarga formtoggle={formtoggle} /> : null}
+
                 <div className='sidebar'>
                     <div className='upper_admin'>
                         <AiOutlineUser className='admin_pic' />
@@ -120,7 +131,7 @@ function DataWarga() {
                                     navigate("/admin");
                                 }}
                                 className='sidebar_items_text'>
-                                Dashboard{" "}
+                                Dashboard
                             </p>
                         </div>
                         <div className='sidebar_items'>
@@ -144,10 +155,15 @@ function DataWarga() {
                     <AiOutlineCaretDown />
                 </div>
 
-                <div className='tambahwarga'>Tambah Warga</div>
+                <div
+                    onClick={() => {
+                        setTambahwarga(!tambahwarga);
+                    }}
+                    className='tambahwarga'>
+                    Tambah Warga
+                </div>
 
                 <div className='datawarga_content'>
-                    {/* make a table using exampledata */}
                     <table className='datawarga_table'>
                         <tr className='theader'>
                             <th className='th1'>No</th>

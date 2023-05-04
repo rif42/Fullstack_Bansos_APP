@@ -1,0 +1,111 @@
+.modalbg{
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 99;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal{
+    width: 60%;
+    height: 65%;
+    background-color: #A0C334;
+    border-radius: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.twargaform_title{
+    text-align: center;
+    font-size: 2rem;
+    height: 1%;
+}
+
+.twargaform_form{
+    width: 70%;
+    height: 70%;
+    place-self: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.twargaform_formitems{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 4.5%;
+}
+
+.twargaform_itemlabel{
+    width: 37%;
+    font-size: 1.2rem;
+    text-align: right;
+    padding-right: 5%;
+}
+
+.twargaform_iteminput{
+    width: 70%;
+    height: 130%;
+    font-size: 1.2rem;
+    border-radius: 10px;
+}
+
+.twargaform_tgl{
+    width: 30%;
+    height: 80%;
+    font-size: 1.2rem;
+    border-radius: 10px;
+}
+
+.sesibansos_label{
+    font-size: 1.2rem;
+}
+
+.sesibansos_input{
+    width: 2em;
+    height: 2em;
+    margin-right:17%
+}
+
+.twargaform_buttons{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: center;
+    margin-top: 3%;
+}
+
+.twargaform_button1{
+    height: 180%;
+    width : 25%;
+    margin-right: 10%;
+    background-color: white;
+    color: black;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-radius: 30px;
+    border-color: transparent;
+    box-shadow: 3px 3px 8px 1px rgba(0,0,0,0.5);
+    cursor: pointer;
+    text-align: center;
+
+
+}
+.twargaform_button2{
+    height: 180%;
+    width : 15%;
+    font-size: 1.2rem;
+    border-radius: 30px;
+    background-color: #A0C334;
+    border-width: 2px;
+    border-color: white;
+    color: white;
+    cursor: pointer;
+    text-align: center;
+}

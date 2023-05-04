@@ -34,6 +34,11 @@ function BuatBansos(props) {
             return false;
         }
 
+        if (isNaN(formdata.idbansos)) {
+            errNotify("ID harus berupa angka");
+            return false;
+        }
+
         if (formdata.namabansos.length < 7 || formdata.namabansos.length > 32) {
             errNotify("Nama Bansos harus 6-32 karakter");
             return false;
