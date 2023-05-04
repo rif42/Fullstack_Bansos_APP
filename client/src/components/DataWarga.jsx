@@ -60,11 +60,11 @@ function DataWarga() {
                 <div className='sidebar'>
                     <div className='upper_admin'>
                         <AiOutlineUser className='admin_pic' />
-                        <div className='admin_name'>Admin 1</div>
+                        <div className='admin_name'>Admin</div>
                     </div>
                     <div className='sidebar_content'>
                         <div className='sidebar_items'>
-                            <AiOutlineDashboard className='admin_pic' />
+                            <AiOutlineDashboard className='sidebar_icons' />
                             <p
                                 onClick={() => {
                                     navigate("/admin");
@@ -74,7 +74,7 @@ function DataWarga() {
                             </p>
                         </div>
                         <div className='sidebar_items'>
-                            <AiOutlineTeam className='admin_pic' />
+                            <AiOutlineTeam className='sidebar_icons' />
                             <p className='sidebar_items_text'>Data Warga </p>
                         </div>
                     </div>
@@ -133,16 +133,17 @@ function DataWarga() {
                         </tr>
                     </table>
                     <table className='datawarga_table_content'>
-                        {datawarga.map((item, index) => {
-                            return (
-                                <tr className='tdata'>
-                                    <td className='th1'>{index + 1}</td>
-                                    <td className='th2'>{item.nkk}</td>
-                                    <td className='th3'>{item.nama}</td>
-                                    <td className='th4'>{item.alamat}</td>
-                                </tr>
-                            );
-                        })}
+                        {datawarga &&
+                            datawarga.map((item, index) => {
+                                return (
+                                    <tr className='tdata'>
+                                        <td className='th1'>{index + 1}</td>
+                                        <td className='th2'>{item.nkk}</td>
+                                        <td className='th3'>{item.nama}</td>
+                                        <td className='th4'>{item.alamat}</td>
+                                    </tr>
+                                );
+                            })}
                     </table>
                 </div>
             </div>

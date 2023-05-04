@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import "./CardBansos.css";
+import { useNavigate } from "react-router-dom";
 
 function CardBansos(props) {
     const handleToggle = () => {
@@ -22,9 +23,15 @@ function CardBansos(props) {
 }
 
 function Cards(item) {
+    const navigate = useNavigate();
+
     return (
         <>
-            <div className='card'>
+            <div
+                onClick={() => {
+                    navigate(`/bansos/${item.bansos_id}`);
+                }}
+                className='card'>
                 <div className='cardtitle'>
                     <h1>{item.nama_bansos}</h1>
                 </div>

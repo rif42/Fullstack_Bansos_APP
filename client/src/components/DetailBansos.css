@@ -1,0 +1,136 @@
+.detailbansos_wrapper{
+    display: flex;
+    flex-direction: row;
+}
+
+.detailbansos_content{
+    width: 80%;
+    background-color: #E1E1E1; 
+    background-image: url('../assets/borgor.png');
+    background-repeat: no-repeat;
+    background-size: 40%;
+    background-position-x: 115%;
+    background-position-y: 200%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.detailbansos_header{
+    width: 100%;
+    height: 25%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.detailbansos_title{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-grow:2;
+    font-size: 2rem;
+    font-weight: bolder;
+}
+.detailbansos_titleid{
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.detailbansos_tgl{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow:1;
+    text-align: center;
+    font-size: 1.1rem;
+}
+.detailbansos_inputnkk{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-grow:2;
+}
+.detailbansos_scanqr{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-grow:1;
+}
+
+.qricon{
+    width: 50%;
+    height: 50%;
+}
+
+.detailbansos_data{
+    width:100%;
+    height:75%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.detailbansos_table{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.inputnkk_form{
+    width : 60%;
+    margin-top:3%;
+    padding: 2%;
+    border-radius: 10px;
+    font-size: 1rem;
+}
+
+.theader_detailbansos{
+    width: 95%;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: #C1CE97;
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+}
+
+.detailbansos_table_content{
+    display: flex;
+    flex-direction: column;
+    width: 95%;
+    max-height: 80%;
+    overflow-y: overlay;
+    overflow-x: hidden;
+    align-items: center;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    font-size: 1rem;
+}
+
+.detailbansos_itemdata{
+    width: 100%;
+    padding-top: 0.5%;
+    padding-bottom: 0.5%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.detailbansos_itemdata:nth-child(odd) {
+    background-color: #FAFEEC;
+}
+
+.detailbansos_itemdata:nth-child(even) {
+    background-color: #C1CE97;
+}

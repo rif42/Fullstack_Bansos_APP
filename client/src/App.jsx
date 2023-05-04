@@ -4,6 +4,7 @@ import LoginPage from "./components/LoginPage";
 import AdminDashboard from "./components/AdminDashboard";
 import ScrollToTop from "./components/ScrollToTop";
 import DataWarga from "./components/DataWarga";
+import DetailBansos from "./components/DetailBansos";
 
 function App() {
     return (
@@ -14,6 +15,7 @@ function App() {
                 <Route path='/' element={<LoginPage />} />
                 <Route path='admin' element={<AdminDashboard />} />
                 <Route path='datawarga' element={<DataWarga />} />
+                <Route path='bansos/:id' element={<DetailBansos />} />
             </Routes>
         </>
     );

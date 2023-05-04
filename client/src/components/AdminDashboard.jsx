@@ -40,15 +40,15 @@ function AdminDashboard() {
                 <div className='sidebar'>
                     <div className='upper_admin'>
                         <AiOutlineUser className='admin_pic' />
-                        <div className='admin_name'>Admin 1</div>
+                        <div className='admin_name'>Admin</div>
                     </div>
                     <div className='sidebar_content'>
                         <div className='sidebar_items'>
-                            <AiOutlineDashboard className='admin_pic' />
+                            <AiOutlineDashboard className='sidebar_icons' />
                             <p className='sidebar_items_text'>Dashboard </p>
                         </div>
                         <div className='sidebar_items'>
-                            <AiOutlineTeam className='admin_pic' />
+                            <AiOutlineTeam className='sidebar_icons' />
                             <p
                                 onClick={() => {
                                     navigate("/datawarga");
