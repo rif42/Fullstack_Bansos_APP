@@ -80,6 +80,19 @@ app.post("/getbansos", (req, res) => {
     });
 });
 
+app.post("/getdatawarga", (req, res) => {
+    const bansos_id = req.body.bansos_id;
+    const SQLStatement = "SELECT * FROM data_warga WHERE bansos_id = ?";
+    db.query(SQLStatement, [bansos_id], (err, result) => {
+        if (err) {
+            res.send({ err: err });
+        }
+        if (result) {
+            res.send(result);
+        }
+    });
+});
+
 app.listen(3001, () => {
     console.log("server running on port 3001");
 });

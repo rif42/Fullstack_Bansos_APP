@@ -3,115 +3,53 @@ import { useState, useEffect } from "react";
 import { AiOutlineImport, AiOutlineUser, AiOutlineDashboard, AiOutlineTeam, AiOutlineCaretDown } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 import TambahWarga from "./TambahWarga";
+import Axios from "axios";
 
 function DataWarga() {
     const navigate = useNavigate();
 
+    const [datawarga, setDatawarga] = useState([]);
     const [tambahwarga, setTambahwarga] = useState(false);
+    const [bansosdropdown, setBansosdropdown] = useState(false);
+    const [bansosdata, setBansosdata] = useState(null);
+    const [chosenbansos, setChosenbansos] = useState(null);
 
     function formtoggle() {
         setTambahwarga(!tambahwarga);
         console.log(tambahwarga, "form toggled");
     }
 
-    const exampledata = [
-        {
-            bansos_id: 123123123123,
-            nkk: 999999999999,
-            nama: "rido ganteng",
-            alamat: "borgor land",
-        },
-        {
-            bansos_id: 123123123123,
-            nkk: 999999999999,
-            nama: "rido ganteng",
-            alamat: "borgor land",
-        },
-        {
-            bansos_id: 123123123123,
-            nkk: 999999999999,
-            nama: "rido ganteng",
-            alamat: "borgor land",
-        },
-        {
-            bansos_id: 123123123123,
-            nkk: 999999999999,
-            nama: "rido ganteng",
-            alamat: "borgor land",
-        },
-        {
-            bansos_id: 123123123123,
-            nkk: 999999999999,
-            nama: "rido ganteng",
-            alamat: "borgor land",
-        },
-        {
-            bansos_id: 123123123123,
-            nkk: 999999999999,
-            nama: "rido ganteng",
-            alamat: "borgor land",
-        },
-        {
-            bansos_id: 123123123123,
-            nkk: 999999999999,
-            nama: "rido ganteng",
-            alamat: "borgor land",
-        },
-        {
-            bansos_id: 123123123123,
-            nkk: 999999999999,
-            nama: "rido ganteng",
-            alamat: "borgor land",
-        },
-        {
-            bansos_id: 123123123123,
-            nkk: 999999999999,
-            nama: "rido ganteng",
-            alamat: "borgor land",
-        },
-        {
-            bansos_id: 123123123123,
-            nkk: 999999999999,
-            nama: "rido ganteng",
-            alamat: "borgor land",
-        },
-        {
-            bansos_id: 123123123123,
-            nkk: 999999999999,
-            nama: "rido ganteng",
-            alamat: "borgor land",
-        },
-        {
-            bansos_id: 123123123123,
-            nkk: 999999999999,
-            nama: "rido ganteng",
-            alamat: "borgor land",
-        },
-        {
-            bansos_id: 123123123123,
-            nkk: 999999999999,
-            nama: "rido ganteng",
-            alamat: "borgor land",
-        },
-        {
-            bansos_id: 123123123123,
-            nkk: 999999999999,
-            nama: "rido ganteng",
-            alamat: "borgor land",
-        },
-        {
-            bansos_id: 123123123123,
-            nkk: 999999999999,
-            nama: "rido ganteng",
-            alamat: "borgor land",
-        },
-        {
-            bansos_id: 123123123123,
-            nkk: 999999999999,
-            nama: "rido ganteng",
-            alamat: "borgor land",
-        },
-    ];
+    function GetBansos() {
+        setBansosdropdown(!bansosdropdown);
+        // console.log(bansosdata, "bansosdata");
+
+        Axios.post("http://localhost:3001/getbansos").then((res, err) => {
+            if (err) {
+                console.log(err, "ERROR");
+            }
+            if (res) {
+                if (bansosdata != res.data) {
+                    setBansosdata(res.data);
+                    // console.log(bansosdata, "bansosdata");
+                }
+            }
+        });
+    }
+
+    function choosebansos(nama_bansos, bansos_id) {
+        setChosenbansos(nama_bansos);
+        setBansosdropdown(!bansosdropdown);
+        // console.log(bansos_id, "BANSOS ID");
+        Axios.post("http://localhost:3001/getdatawarga", { bansos_id: bansos_id }).then((res, err) => {
+            if (err) {
+                console.log(err, "ERROR");
+            }
+            if (res) {
+                setDatawarga(res.data);
+                console.log(datawarga, "data warga");
+            }
+        });
+    }
 
     return (
         <>
@@ -150,10 +88,31 @@ function DataWarga() {
                         </div>
                     </div>
                 </div>
-                <div className='pilihbansos'>
-                    Nama Bansos &nbsp;
-                    <AiOutlineCaretDown />
+                <div
+                    onClick={() => {
+                        GetBansos();
+                    }}
+                    className='pilihbansos'>
+                    {chosenbansos ? chosenbansos + " " : "Nama Bansos "}
+                    <AiOutlineCaretDown className='caretdown' />
                 </div>
+                {bansosdropdown ? (
+                    <div className='bansosdropdown'>
+                        {bansosdata
+                            ? bansosdata.map((item, index) => {
+                                  return (
+                                      <div
+                                          onClick={() => {
+                                              choosebansos(item.nama_bansos, item.bansos_id);
+                                          }}
+                                          className='bansosdropdown_item'>
+                                          {item.nama_bansos}
+                                      </div>
+                                  );
+                              })
+                            : null}
+                    </div>
+                ) : null}
 
                 <div
                     onClick={() => {
@@ -173,7 +132,7 @@ function DataWarga() {
                         </tr>
                     </table>
                     <table className='datawarga_table_content'>
-                        {exampledata.map((item, index) => {
+                        {datawarga.map((item, index) => {
                             return (
                                 <tr className='tdata'>
                                     <td className='th1'>{index + 1}</td>

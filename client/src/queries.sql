@@ -13,6 +13,6 @@ create table data_warga(
     sesi ENUM('1', '2', '3'),
     no_antre SMALLINT,
     status BOOL,
-    bansos_id BIGINT,
+    bansos_id BIGINT not null,
     FOREIGN KEY (bansos_id) REFERENCES bansos(bansos_id)
 );

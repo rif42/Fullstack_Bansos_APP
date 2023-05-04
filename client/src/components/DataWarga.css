@@ -25,10 +25,12 @@
 .pilihbansos{
     position: absolute;
     display: flex;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
-    width: 15%;
+    min-width: 15%;
     height: 8%;
+    padding-right: 2%;
     margin-top: 3%;
     margin-left:23%;
     background-color: white;
@@ -39,6 +41,47 @@
     box-shadow: 5px 5px 10px 1px rgba(0,0,0,0.7);
     cursor: pointer;
     text-align: center;
+}
+
+.caretdown{
+    position: absolute;
+    right: 7.5%;
+}
+
+.bansosdropdown{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    min-width: 15%;
+    height: fit-content;
+    margin-top: 9%;
+    margin-left:23%;
+    background-color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: black;
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px 1px rgba(0,0,0,0.7);
+    cursor: pointer;
+    text-align: center;
+    z-index: 1;
+    padding-top: 1%;
+    padding-bottom: 1%;
+
+}
+
+.bansosdropdown_item{
+    font-weight: lighter;
+    padding: 5%;
+    font-size: 1.2rem;
+}
+
+.bansosdropdown_item:hover{
+    font-weight: bold;
+    padding: 5%;
+    font-size: 1.25rem;
 }
 
 .datawarga_content{
@@ -114,7 +157,7 @@
     color: black;
     font-size: 1.1rem;
     align-items: center;
-    min-height: 12%;
+    min-height: 13%;
 }
 
 .tdata:nth-child(odd) {
