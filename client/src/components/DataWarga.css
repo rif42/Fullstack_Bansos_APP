@@ -157,17 +157,16 @@
     color: black;
     font-size: 1.1rem;
     align-items: center;
-    min-height: 13%;
 }
 
 .tdata:nth-child(odd) {
     background-color: #FAFEEC;
-
+    height: 3rem;
 }
 
 .tdata:nth-child(even) {
     background-color: #C1CE97;
-
+    height: 3rem;
 }
 
 .tdata:last-child {

@@ -17,6 +17,7 @@ function DataWarga() {
     function formtoggle() {
         setTambahwarga(!tambahwarga);
         console.log(tambahwarga, "form toggled");
+        GetBansos();
     }
 
     function GetBansos() {
@@ -37,7 +38,7 @@ function DataWarga() {
     }
 
     function choosebansos(nama_bansos, bansos_id) {
-        setChosenbansos(nama_bansos);
+        setChosenbansos([nama_bansos, bansos_id]);
         setBansosdropdown(!bansosdropdown);
         // console.log(bansos_id, "BANSOS ID");
         Axios.post("http://localhost:3001/getdatawarga", { bansos_id: bansos_id }).then((res, err) => {
@@ -54,7 +55,7 @@ function DataWarga() {
     return (
         <>
             <div className='datawarga_wrapper'>
-                {tambahwarga ? <TambahWarga formtoggle={formtoggle} /> : null}
+                {tambahwarga ? <TambahWarga bansos_id={chosenbansos[1]} formtoggle={formtoggle} /> : null}
 
                 <div className='sidebar'>
                     <div className='upper_admin'>
@@ -93,7 +94,7 @@ function DataWarga() {
                         GetBansos();
                     }}
                     className='pilihbansos'>
-                    {chosenbansos ? chosenbansos + " " : "Nama Bansos "}
+                    {chosenbansos ? chosenbansos[0] + " " : "Nama Bansos "}
                     <AiOutlineCaretDown className='caretdown' />
                 </div>
                 {bansosdropdown ? (

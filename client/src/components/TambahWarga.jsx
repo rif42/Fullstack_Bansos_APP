@@ -2,6 +2,7 @@ import React from "react";
 import "./TambahWarga.css";
 import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
+import Axios from "axios";
 
 function TambahWarga(props) {
     const [tambahwargadata, setTambahwargadata] = useState({});
@@ -23,25 +24,25 @@ function TambahWarga(props) {
         e.preventDefault();
         if (!validate()) return;
 
-        console.log(tambahwargadata);
+        console.log(tambahwargadata, "FORM DATA");
+        console.log(props.bansos_id, "BANSOS ID");
 
-        // try {
-        //     Axios.post("http://localhost:3001/buatbansos", {
-        //         bansos_id: formdata.idbansos,
-        //         nama_bansos: formdata.namabansos,
-        //         tgl1: formdata.tglbansos1,
-        //         tgl2: formdata.tglbansos2,
-        //         sesi: formdata.sesibansos,
-        //     }).then((res) => {
-        //         if (res.data.err) {
-        //             errNotify(res.data.err.sqlMessage);
-        //         } else {
-        //             bansosNotify();
-        //         }
-        //     });
-        // } catch (err) {
-        //     console.log(err);
-        // }
+        try {
+            Axios.post("http://localhost:3001/inputdatawarga", {
+                bansos_id: props.bansos_id,
+                nkk: tambahwargadata.nkk,
+                nama: tambahwargadata.nama,
+                alamat: tambahwargadata.alamat,
+            }).then((res) => {
+                if (res.data.err) {
+                    errNotify(res.data.err.sqlMessage);
+                } else {
+                    normalNotify("Data Warga Berhasil Ditambahkan");
+                }
+            });
+        } catch (err) {
+            console.log(err);
+        }
     };
 
     const validate = () => {
