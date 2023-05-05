@@ -24,6 +24,17 @@ function DetailBansos() {
         setSearchbox(e.target.value);
     };
 
+    function confirmstatus(nkk) {
+        console.log(nkk);
+        Axios.post("http://localhost:3001/confirmstatus", { nkk: nkk })
+            .then((res) =>
+                Axios.post("http://localhost:3001/getdatawarga", { bansos_id: params.id }).then((response) =>
+                    setDatawarga(response.data)
+                )
+            )
+            .catch((error) => console.log(error));
+    }
+
     useEffect(() => {
         console.log(params, "params");
         Axios.post("http://localhost:3001/getdatawarga", { bansos_id: params.id })
@@ -163,9 +174,15 @@ function DetailBansos() {
                                             <td style={{ display: "flex", justifyContent: "center", width: "10%" }}>
                                                 <AiOutlineCheckCircle
                                                     style={{ fill: "green", width: "20%", height: "20%" }}
+                                                    onClick={() => confirmstatus(item.nkk)}
                                                 />
                                                 <AiOutlineCloseCircle
-                                                    style={{ fill: "red", width: "20%", height: "20%" }}
+                                                    style={{
+                                                        fill: "red",
+                                                        width: "20%",
+                                                        height: "20%",
+                                                        display: item.status ? "none" : "block",
+                                                    }}
                                                 />
                                             </td>
                                         </tr>

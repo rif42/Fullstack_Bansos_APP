@@ -122,6 +122,19 @@ app.post("/inputdatawarga", (req, res) => {
     });
 });
 
+app.post("/confirmstatus", (req, res) => {
+    const nkk = req.body.nkk;
+    const SQLStatement = "UPDATE data_warga SET status = '1' WHERE nkk = ?";
+    db.query(SQLStatement, [nkk], (err, result) => {
+        if (err) {
+            res.send({ err: err });
+        }
+        if (result) {
+            res.send(result);
+        }
+    });
+});
+
 app.listen(3001, () => {
     console.log("server running on port 3001");
 });
