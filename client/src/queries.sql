@@ -12,7 +12,7 @@ create table data_warga(
     tgl_claim DATE,
     sesi ENUM('1', '2', '3'),
     no_antre SMALLINT,
-    status BOOL,
+    status BOOL default 0,
     bansos_id BIGINT not null,
     FOREIGN KEY (bansos_id) REFERENCES bansos(bansos_id)
 );

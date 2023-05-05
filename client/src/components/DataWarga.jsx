@@ -4,9 +4,11 @@ import { AiOutlineImport, AiOutlineUser, AiOutlineDashboard, AiOutlineTeam, AiOu
 import { useNavigate } from "react-router-dom";
 import TambahWarga from "./TambahWarga";
 import Axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
 
 function DataWarga() {
     const navigate = useNavigate();
+    const errNotify = (msg) => toast.error(msg);
 
     const [datawarga, setDatawarga] = useState([]);
     const [tambahwarga, setTambahwarga] = useState(false);
@@ -55,6 +57,7 @@ function DataWarga() {
     return (
         <>
             <div className='datawarga_wrapper'>
+                <ToastContainer />
                 {tambahwarga ? <TambahWarga bansos_id={chosenbansos[1]} formtoggle={formtoggle} /> : null}
 
                 <div className='sidebar'>
@@ -117,7 +120,9 @@ function DataWarga() {
 
                 <div
                     onClick={() => {
-                        setTambahwarga(!tambahwarga);
+                        {
+                            bansosdata ? setTambahwarga(!tambahwarga) : errNotify("Pilih Bansos Terlebih Dahulu");
+                        }
                     }}
                     className='tambahwarga'>
                     Tambah Warga

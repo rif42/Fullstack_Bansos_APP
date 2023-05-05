@@ -10,13 +10,20 @@ import {
 } from "react-icons/ai";
 import "./DetailBansos.css";
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import Axios from "axios";
 
 function DetailBansos() {
+    const navigate = useNavigate();
     const params = useParams();
     const [bansos, setBansos] = useState(null);
     const [datawarga, setDatawarga] = useState(null);
+    const [searchbox, setSearchbox] = useState(null);
+
+    const updateSearchbox = (e) => {
+        setSearchbox(e.target.value);
+    };
+
     useEffect(() => {
         console.log(params, "params");
         Axios.post("http://localhost:3001/getdatawarga", { bansos_id: params.id })
@@ -82,7 +89,12 @@ function DetailBansos() {
                         </div>
                         <div className='detailbansos_inputnkk'>
                             <label style={{ fontSize: "1.1rem" }}>Nomor Kartu Keluarga</label>
-                            <input type='text' className='inputnkk_form' placeholder='NKK : 320120XXXXXXX' />
+                            <input
+                                type='text'
+                                onChange={updateSearchbox}
+                                className='inputnkk_form'
+                                placeholder='NKK : 320120XXXXXXX'
+                            />
                         </div>
                         <div style={{ fontSize: "1.1rem" }} className='detailbansos_scanqr'>
                             <p>Scan QR</p>
@@ -109,8 +121,8 @@ function DetailBansos() {
                         </table>
                         <table className='detailbansos_table_content'>
                             {datawarga &&
-                                datawarga.map((item, index) => {
-                                    return (
+                                (searchbox ? datawarga.filter((item) => item.nkk == searchbox) : datawarga).map(
+                                    (item, index) => (
                                         <tr className='detailbansos_itemdata'>
                                             <td style={{ display: "flex", justifyContent: "center", width: "2%" }}>
                                                 {index + 1}
@@ -137,16 +149,16 @@ function DetailBansos() {
                                                 {item.alamat}
                                             </td>
                                             <td style={{ display: "flex", justifyContent: "center", width: "10%" }}>
-                                                {item.tgl_claim}
+                                                {item.tgl_claim ? item.tgl_claim : "-"}
                                             </td>
                                             <td style={{ display: "flex", justifyContent: "center", width: "5%" }}>
-                                                {item.sesi}
+                                                {item.sesi ? item.sesi : "-"}
                                             </td>
                                             <td style={{ display: "flex", justifyContent: "center", width: "5%" }}>
-                                                {item.no_antre}
+                                                {item.no_antre ? item.no_antre : "-"}
                                             </td>
                                             <td style={{ display: "flex", justifyContent: "center", width: "5%" }}>
-                                                {item.status}
+                                                {item.status ? "Sudah" : "Belum"}
                                             </td>
                                             <td style={{ display: "flex", justifyContent: "center", width: "10%" }}>
                                                 <AiOutlineCheckCircle
@@ -157,8 +169,8 @@ function DetailBansos() {
                                                 />
                                             </td>
                                         </tr>
-                                    );
-                                })}
+                                    )
+                                )}
                         </table>
                     </div>
                 </div>
