@@ -86,7 +86,11 @@ function DataWarga() {
                             <line x1='50' y1='0' x2='90' y2='0' stroke='#5D5D5D' strokeWidth={1} />
                             <line x1='50' y1='0' x2='10' y2='0' stroke='#5D5D5D' strokeWidth={1} />
                         </svg>
-                        <div className='logout_items'>
+                        <div
+                            className='logout_items'
+                            onClick={() => {
+                                navigate("/");
+                            }}>
                             <AiOutlineImport className='admin_pic' />
                             <p className='sidebar_items_text'>Logout</p>
                         </div>
