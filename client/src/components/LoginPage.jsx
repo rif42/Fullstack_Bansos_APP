@@ -6,6 +6,7 @@ import { AiOutlineClose } from "react-icons/ai";
 import "./LoginPage.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import QRCode from "react-qr-code";
 
 function LoginPage() {
     const regNotify = () => toast("Register Success!");
@@ -21,6 +22,7 @@ function LoginPage() {
     const [nkk, setNKK] = useState(null);
     const [bansos, setBansos] = useState(null);
     const [datawarga, setDataWarga] = useState(null);
+    const [qrmodal, setQRModal] = useState(false);
 
     const validatenkk = () => {
         if (nkk.length > 0 && nkk.length < 16) {
@@ -44,6 +46,28 @@ function LoginPage() {
         }
 
         return true;
+    };
+
+    const loginAccount = () => {
+        if (!validate()) return;
+        // console.log(user, "USER REF");
+        // console.log(pass, "PASS REF");
+        try {
+            Axios.post("http://localhost:3001/login", { user: user, pass: pass }).then((res, err) => {
+                // console.log(res, "LOGIN RESPONSE");
+                // console.log(err, "LOGIN RESPONSE");
+                if (res.data.message) {
+                    errNotify(res.data.message);
+                } else if (res.err) {
+                    errNotify(res.err);
+                } else {
+                    loginNotify();
+                    navigate("/admin");
+                }
+            });
+        } catch (err) {
+            console.log(err);
+        }
     };
 
     const registerAccount = () => {
@@ -75,12 +99,12 @@ function LoginPage() {
                     }
 
                     if (res.data[0].tgl_claim != null) {
-                        errNotify("NKK sudah mengambil bantuan!");
-                        return;
+                        normalNotify("NKK sudah mengambil bantuan!");
+                        setDataWarga(res.data[0]);
+                        console.log(res.data[0]);
+                        setQRModal(!qrmodal);
+                        return res.data[0];
                     }
-                    setDataWarga(res.data[0]);
-                    console.log(res.data[0]);
-                    return res.data[0];
                 }
             );
             const bansos = await Axios.post("http://localhost:3001/getbansosbyid", {
@@ -134,6 +158,11 @@ function LoginPage() {
         });
     };
 
+    const closemodal = () => {
+        setQRModal(!qrmodal);
+        navigate(0);
+    };
+
     return (
         <>
             <div className='navbar'>
@@ -149,8 +178,47 @@ function LoginPage() {
                 </ul>
             </div>
             <ToastContainer />
+            {qrmodal && (
+                <div className='qrmodal_bg'>
+                    <AiOutlineClose className='modalcloseicon' onClick={closemodal} />
+                    <div className='qrmodal'>
+                        <QRCode
+                            className='qrmodal_code'
+                            size={256}
+                            value={datawarga.bansos_id + datawarga.nkk + datawarga.sesi}
+                            viewBox={`0 0 256 256`}
+                        />
+                        <div className='qrmodal_info'>
+                            <p className='qrmodal_info_title'>
+                                Silahkan datang sesuai tanggal dan sesi yang telah anda tentukan
+                            </p>
+                            <div className='qrmodal_info_items'>
+                                <div className='qrmodal_info_item1'>Nama Bansos :</div>
+                                <div className='qrmodal_info_item2'>{datawarga.bansos_id}</div>
+                            </div>
+                            <div className='qrmodal_info_items'>
+                                <div className='qrmodal_info_item1'>No KK :</div>
+                                <div className='qrmodal_info_item2'>{datawarga.nkk}</div>
+                            </div>
+                            <div className='qrmodal_info_items'>
+                                <div className='qrmodal_info_item1'>Alamat :</div>
+                                <div className='qrmodal_info_item2'>{datawarga.alamat}</div>
+                            </div>
+                            <div className='qrmodal_info_items'>
+                                <div className='qrmodal_info_item1'>Tanggal Claim :</div>
+                                <div className='qrmodal_info_item2'>{datawarga.tgl_claim.slice(0, 10)}</div>
+                            </div>
+                            <div className='qrmodal_info_items'>
+                                <div className='qrmodal_info_item1'>Sesi :</div>
+                                <div className='qrmodal_info_item2'>{datawarga.sesi}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )}
+
             {loginmodal ? (
-                <div className='modal'>
+                <div className='loginmodal'>
                     <AiOutlineClose className='closebutton' onClick={() => setLoginModal(false)} />
                     <form id='loginform' className='modalbox' onSubmit={handleSubmit}>
                         <label htmlFor='user' className='loginlabel'>
