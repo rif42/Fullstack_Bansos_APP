@@ -1,12 +1,10 @@
-.nkkcheck{
-    margin-top: 20%;
-}
+
 
 .title  {
     display: flex;
     flex-direction: row;
     width: 100%;
-    margin-top: 16%;
+    margin-top: 10%;
 }
 
 .title_h1  {
@@ -151,4 +149,30 @@
     width: 4%;
     height: 4%;
     cursor: pointer;
+}
+
+.nkkcheck{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.nkkcheck_form{
+    width: 70%;
+    height: 70%;
+    place-self: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 5%;
+}
+
+.nkkcheck_buttons{
+    display: flex;
+    flex-direction: row;
+    width: 120%;
+    justify-content: center;
+    margin-top: 3%;
 }

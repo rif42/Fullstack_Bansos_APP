@@ -106,6 +106,19 @@ app.post("/getdatawarga", (req, res) => {
     });
 });
 
+app.post("/getdatawargabynkk", (req, res) => {
+    const nkk = req.body.nkk;
+    const SQLStatement = "SELECT * FROM data_warga WHERE nkk = ?";
+    db.query(SQLStatement, [nkk], (err, result) => {
+        if (err) {
+            res.send({ err: err });
+        }
+        if (result) {
+            res.send(result);
+        }
+    });
+});
+
 app.post("/inputdatawarga", (req, res) => {
     const bansos_id = req.body.bansos_id;
     const nkk = req.body.nkk;
@@ -126,6 +139,22 @@ app.post("/confirmstatus", (req, res) => {
     const nkk = req.body.nkk;
     const SQLStatement = "UPDATE data_warga SET status = '1' WHERE nkk = ?";
     db.query(SQLStatement, [nkk], (err, result) => {
+        if (err) {
+            res.send({ err: err });
+        }
+        if (result) {
+            res.send(result);
+        }
+    });
+});
+
+app.post("/konfirmasipengambilan", (req, res) => {
+    const no_antre = req.body.no_antre;
+    const sesi = req.body.sesi;
+    const tgl_claim = req.body.tgl_claim;
+    const nkk = req.body.nkk;
+    const SQLStatement = "UPDATE data_warga SET no_antre = ?, sesi = ?, tgl_claim = ? WHERE nkk = ?";
+    db.query(SQLStatement, [no_antre, sesi, tgl_claim, nkk], (err, result) => {
         if (err) {
             res.send({ err: err });
         }
