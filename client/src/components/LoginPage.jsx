@@ -35,20 +35,22 @@ function LoginPage() {
         }
         return true;
     };
+
     const validate = () => {
         if (user === "" || pass === "") {
             errNotify("Username or Password is Empty!");
             return false;
         }
         if (user.length < 5 || pass.length < 5) {
-            errNotify("Username or Password must be at least 5 characters!");
+            errNotify("Username or Password must be at least 6 characters!");
             return false;
         }
 
         return true;
     };
 
-    const loginAccount = () => {
+    const loginAccount = (e) => {
+        e.preventDefault();
         if (!validate()) return;
         // console.log(user, "USER REF");
         // console.log(pass, "PASS REF");
@@ -58,8 +60,9 @@ function LoginPage() {
                 // console.log(err, "LOGIN RESPONSE");
                 if (res.data.message) {
                     errNotify(res.data.message);
-                } else if (res.err) {
-                    errNotify(res.err);
+                } else if (res.data.err) {
+                    console.log(res.data.err, "ERROR");
+                    errNotify(res.data.err);
                 } else {
                     loginNotify();
                     navigate("/admin");
@@ -70,22 +73,22 @@ function LoginPage() {
         }
     };
 
-    const registerAccount = () => {
+    const registerAccount = (e) => {
+        e.preventDefault();
         //run validate function, if return false then stop the function
         if (!validate()) return;
         // console.log(user, "USER REF");
         // console.log(pass, "PASS REF");
-        try {
-            Axios.post("http://localhost:3001/register", { user: user, pass: pass }).then((res) => {
-                if (res.data.message) {
-                    errNotify(res.data.message);
-                } else {
-                    regNotify();
-                }
-            });
-        } catch (err) {
-            console.log(err);
-        }
+
+        Axios.post("http://localhost:3001/register", { user: user, pass: pass }).then((res) => {
+            console.log(res);
+            if (res.data.message) {
+                console.log(res);
+                errNotify(res.data.message);
+            } else {
+                regNotify();
+            }
+        });
     };
 
     const checkBantuan = async () => {
@@ -123,10 +126,6 @@ function LoginPage() {
             console.log(err);
         }
     };
-
-    function handleSubmit(e) {
-        e.preventDefault();
-    }
 
     const updateData = (e) => {
         setDataWarga({
@@ -220,7 +219,7 @@ function LoginPage() {
             {loginmodal ? (
                 <div className='loginmodal'>
                     <AiOutlineClose className='closebutton' onClick={() => setLoginModal(false)} />
-                    <form id='loginform' className='modalbox' onSubmit={handleSubmit}>
+                    <form id='loginform' className='modalbox'>
                         <label htmlFor='user' className='loginlabel'>
                             Username
                         </label>
@@ -231,7 +230,7 @@ function LoginPage() {
                                 setUser(e.target.value);
                             }}
                             className='loginbox'
-                            placeholder='admin'
+                            placeholder='input username here'
                         />
                         <label htmlFor='pass' className='loginlabel'>
                             Password
@@ -243,14 +242,14 @@ function LoginPage() {
                                 setPass(e.target.value);
                             }}
                             className='loginbox'
-                            placeholder='ridoganteng'
+                            placeholder='input password here'
                         />
-                        <button type='submit' onClick={registerAccount} className='loginbutton'>
-                            Register
+                        <button onClick={loginAccount} className='loginbutton'>
+                            Login
                         </button>
 
-                        <button type='submit' onClick={loginAccount} className='loginbutton'>
-                            Login
+                        <button onClick={registerAccount} className='loginbutton'>
+                            Register
                         </button>
                     </form>
                 </div>

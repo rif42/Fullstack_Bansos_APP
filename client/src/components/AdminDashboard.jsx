@@ -77,7 +77,7 @@ function AdminDashboard() {
                 <div className='admin_content'>
                     {bansosform ? (
                         <BuatBansos formtoggle={formtoggle} />
-                    ) : bansosdata ? (
+                    ) : bansosdata.length != 0 ? (
                         <CardBansos data={bansosdata} formtoggle={formtoggle} />
                     ) : (
                         <div className='buatbansos'>
